@@ -163,6 +163,33 @@ export class EventsService {
     ```
      */
   async getFutureEventWithWorkshops() {
-    throw new Error('TODO task 2');
+    const events = await prisma.event.findMany({
+      where: {
+        workshops: {
+          some: {
+            start: {
+              gt: new Date()
+            }
+          }
+        }
+      },
+      select: {
+        id: true,
+        name: true,
+        createdAt: true,
+        workshops: {
+          select: {
+            id: true,
+            start: true,
+            end: true,
+            eventId: true,
+            name: true,
+            createdAt: true
+          }
+        }
+      }
+    });
+    
+    return events
   }
 }
