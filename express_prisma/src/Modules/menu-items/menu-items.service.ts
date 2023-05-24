@@ -1,4 +1,7 @@
+import { PrismaClient } from "@prisma/client";
 import App from "../../app";
+
+const prisma = new PrismaClient()
 
 export class MenuItemsService {
   constructor(protected app: App) {}
@@ -79,6 +82,15 @@ export class MenuItemsService {
   */
 
   async getMenuItems() {
-    throw new Error('TODO in task 3');
-  }
+    const menuItems = await prisma.menuItem.findFirst({
+        include: {
+            children: {
+                include: {
+                    children: true
+                }
+            }
+        }
+      })
+      return [menuItems]
+      }
 }
