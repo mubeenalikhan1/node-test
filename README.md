@@ -3,7 +3,7 @@
 Get started:
 
 - create your own repo (for example on www.github.com)
-- change the origin to your own repo with `git remote set-url origin <remote_url>`
+- change the origin to your own repo with `git remote set-url origin <https://github.com/mubeenalikhan1/node-test.git>`
 - run `npm i` to install all dependencies
 - change directory to whatever tech suites you best
 - run `npm run migrate` (1 migration should throw an exception)
