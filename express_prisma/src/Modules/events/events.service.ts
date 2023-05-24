@@ -1,4 +1,7 @@
+import { PrismaClient } from "@prisma/client";
 import App from "../../app";
+
+const prisma = new PrismaClient()
 
 export class EventsService {
   constructor(protected app: App) {}
@@ -85,7 +88,12 @@ export class EventsService {
      */
 
   async getEventsWithWorkshops() {
-    throw new Error('TODO task 1');
+    const events = await prisma.event.findMany({
+      include: {
+        workshops: true
+      }
+    })
+    return events
   }
 
   /* TODO: complete getFutureEventWithWorkshops so that it returns events with workshops, that have not yet started
